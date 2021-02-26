@@ -1,0 +1,4 @@
+{
+    "mongoUri": "mongodb+srv://Rudolf16:sureba80@cluster0.pvkji.mongodb.net/todoList?retryWrites=true&w=majority",
+    "port": 5000
+}

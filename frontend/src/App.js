@@ -4,11 +4,6 @@ import Loader from "react-loader-spinner";
 import { ListItem } from "./components/listItem"
 import { Button, Input, Form, FormGroup, Card } from "reactstrap"
 
-
-
-
-
-
 function App() {
   const [loading, setLoading] = useState(false)
   const [todoList, setTodoList] = useState([])
@@ -92,16 +87,17 @@ function App() {
 
 
   return (
-    loading ? <Loader type="Grid" color="#81d4fa" /> :
-      <Card style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-        <Form onSubmit={(e) => createTodo(e)}>
-          <Input maxLength="60" value={todo} onChange={(e) => changeTodo(e)} />
-          {todoList.map((todo, index) =>
+    // loading ? <Loader  type="Grid" color="#81d4fa" /> :
+    <Card style={{ padding: '20px', maxWidth: '600px', margin: '0 auto'}}>
+      <Form onSubmit={(e) => createTodo(e)}>
+        <Input maxLength="60" value={todo} onChange={(e) => changeTodo(e)} />
+        {loading ? <Loader style={{ padding: '30px 0 30px 250px', }} type="Grid" color="#81d4fa" />
+          : todoList.map((todo, index) =>
             <ListItem key={index} todo={todo} onHandleDelete={onHandleDelete} />
           )}
-          <Button color="primary" type="submit" style={{ marginTop: '15px' }}>Add todo</Button>
-        </Form>
-      </Card>
+        <Button color="primary" type="submit" style={{ marginTop: '15px' }}>Add todo</Button>
+      </Form>
+    </Card>
 
   );
 }
