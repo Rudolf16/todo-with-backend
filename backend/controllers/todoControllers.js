@@ -17,6 +17,7 @@ module.exports.postTodo = async (req, res) => {
         console.log("Todo created succesfully")
     } catch (error) {
         console.log("Todo not created")
+        res.json({message:"Todo already created"})
         console.log(error)
     }
 

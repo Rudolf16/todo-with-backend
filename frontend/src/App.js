@@ -32,11 +32,11 @@ function App() {
   }
   const createTodo = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     try {
       if (todo.trim()) {
         const data = { item: todo, id: Date.now() }
-        const response = await axios.post("http://localhost:5000/todo", data, {
+        await axios.post("http://localhost:5000/todo", data, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -46,6 +46,7 @@ function App() {
 
       }
     } catch (error) {
+      setLoading(false)
       console.log(error);
 
 
@@ -88,9 +89,9 @@ function App() {
 
   return (
     // loading ? <Loader  type="Grid" color="#81d4fa" /> :
-    <Card style={{ padding: '20px', maxWidth: '600px', margin: '0 auto'}}>
+    <Card style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
       <Form onSubmit={(e) => createTodo(e)}>
-        <Input maxLength="60" value={todo} onChange={(e) => changeTodo(e)} />
+        <Input maxLength="60" value={todo} onChange={(e) => changeTodo(e)} placeholder="Add todo" />
         {loading ? <Loader style={{ padding: '30px 0 30px 250px', }} type="Grid" color="#81d4fa" />
           : todoList.map((todo, index) =>
             <ListItem key={index} todo={todo} onHandleDelete={onHandleDelete} />
